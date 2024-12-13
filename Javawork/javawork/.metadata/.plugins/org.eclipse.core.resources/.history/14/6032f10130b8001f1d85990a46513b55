@@ -1,0 +1,19 @@
+package day1212;
+
+public class Ex5Operator {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int x,y,max;
+		x=5;
+		y=13;
+		max = x>y?x:y;
+		System.out.println("max="+max);
+		
+		int z = 20;
+		
+		max = x>y&&x>z?x:y>x&&y>z?y:z;
+		System.out.println("max="+max);
+	}
+
+}

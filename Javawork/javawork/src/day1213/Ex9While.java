@@ -1,0 +1,39 @@
+package day1213;
+
+import java.util.Scanner;
+
+public class Ex9While {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc= new Scanner(System.in);
+		
+		/*
+		 * 1글자씩 입력하다가 소문자 x(대소문자 상관없이)를 입력학하면 빠져나와서 입력한 데이터를 분석한 결과를 출력하시오 
+		 * 대문자: 3 
+		 * 소문자: 4
+		 * 숫자 : 3
+		 * 
+		 */
+		int n=0,cap=0,f=0;
+		
+		while(true) {
+			char ch = 0;
+			System.out.printf("문자를 입력하세요(종료x):");
+			ch = sc.nextLine().charAt(ch);
+			if(ch=='x' || ch=='X')
+				break;
+			if (ch>=65 && ch<=90)
+				cap +=1;
+			else if(ch>=97 && ch<=122)
+				f+=1;
+			else if(ch>=48 && ch<=57)
+				n+=1;
+			
+		}
+		System.out.println("대문자:"+cap);
+		System.out.println("소문자:"+f);
+		System.out.println("숫자:"+n);
+	}
+
+}

@@ -1,0 +1,33 @@
+package day1210;
+
+public class Ex8Argument {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//System.out.println("이름:"+args[0]+"님\n나이:"+args[1]+"세\n키:"+args[2]+"cm\n몸무게:"+args[3]+"kg\n혈액형:"+args[4]+"형");
+		//System.out.println("이름:"+args[0]+"님\n사는곳:"+args[1]+"\n출생연도:"+args[2]+"\n");
+		
+		System.out.println("외부에서 값 읽어오기");
+		String name = args[0];
+		String city = args[1];
+		int birthYear = Integer.parseInt(args[2]); //string type을 정수 type으로 변환 .
+		int age = 2024-birthYear;
+		//두과목의 점수
+		int kor = Integer.parseInt(args[3]);
+		int eng = Integer.parseInt(args[4]);
+		int total = kor+eng;
+		double avg1 = (double)total/2;
+		double avg2 = total/2.0;
+		
+		System.out.println("이름: "+name);
+		System.out.println("지역: "+city);
+		System.out.println("출생 연도: "+ birthYear +", 나이: "+age);
+		System.out.println("국어 점수:" + kor);
+		System.out.println("영어 점수:"+eng);
+		System.out.println("평균 점수:"+avg1);
+		System.out.println("평균 점수:"+avg2);
+	}
+
+}
+
+ 

@@ -1,0 +1,18 @@
+package day1212;
+
+public class Ex2Operator {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int su1=10;
+		int su2 = 4;
+		
+		System.out.println(su1+su2);
+		System.out.println(su1-su2);
+		System.out.println(su1*su2);
+		System.out.println(su1/su2);
+		System.out.println((double)su1%su2);
+		System.out.println(su1%(double)su2);
+	}
+
+}

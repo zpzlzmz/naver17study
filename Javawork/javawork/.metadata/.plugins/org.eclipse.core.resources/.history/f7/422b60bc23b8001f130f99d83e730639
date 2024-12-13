@@ -1,0 +1,21 @@
+package day1210;
+
+public class Ex2DataType {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int kor=90;
+		int eng=93;
+		System.out.println("합계="+(kor+eng));
+		
+		int a = 056;// 앞에 0을넣으면 8진수로 인식 5*8+6*1 -- 46
+		int b = 0x56; //0x를 넣으면 16진수로 인식 16^2*1 +2*16^1+10*16^0 = 256+32+10 = 298
+		System.out.println("a="+a);
+		System.out.println("b="+b);
+		int c = 047;//4*8+7*1 = 39
+		int d = 0xa9; // 10*16+9 = 169
+		System.out.println("c="+c);
+		System.out.println("d="+d);
+	}
+
+}
