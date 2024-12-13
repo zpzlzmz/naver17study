@@ -1,0 +1,29 @@
+package day1212;
+
+public class Ex1Operator {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//증감 연산자, ++변수 = 전치 1순위, 변수 ++ 후위 끝순위
+		
+		int a,b,m,n;
+		a = b =5;
+		m=++a;
+		n=b++;
+		System.out.printf("a = %d, b = %d, n = %d, m = %d\n",a,b,n,m);
+		a=b=n=m=5;
+		m=a++*++b;
+		System.out.printf("a = %d, b = %d, n = %d, m = %d\n",a,b,n,m);
+		n = a+++ ++b;
+		System.out.printf("a = %d, b = %d, n = %d, m = %d\n",a,b,n,m);
+		a = 5;
+		System.out.println(a++);
+		System.out.println(++a);
+		
+		a = b= n=m=5;
+		a*=b-- -++n*3;
+		
+		
+	}
+
+}
