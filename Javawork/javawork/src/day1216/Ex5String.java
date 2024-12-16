@@ -4,7 +4,7 @@ public class Ex5String {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("String 클래스의 멤버 메소드에 대한 공부");
+		/*System.out.println("String 클래스의 멤버 메소드에 대한 공부");
 		String str1 = "Apple";
 		String str2 = "Have a nice Day";
 		String str3 = "Orange";
@@ -58,8 +58,39 @@ public class Ex5String {
 		System.out.println("=".repeat(40));
 		System.out.println();
 		System.out.println(str2.substring(7));//7번 인덱스 부터 추출 
+		
 		System.out.println(str2.substring(7,10));// 7번 인덱스 부터 10번 인덱스 전까지 즉 7,8,9 인덱스 추출.
+	
+		String str5="red,green,blue,yello,gray,black";
+		String []array=str5.split(",");
+		for(String a:array)
+			System.out.println(a);	*/
+		
+		String str6 ="     Hello     ";
+		System.out.println("*"+str6+"*");
+		System.out.println("*"+str6.trim()+"*");//공백 제거 후 반환 하는것trim
+		System.out.println();
+		System.out.println("String.valueOf : 다양한 타입의 데이타를 String 타입으로 변환할때 씀");
+		String s1 = 100+""; //int + String = String -> valueOf의 쉬운 사용 예.
+		String s2 = String.valueOf(true);
+		float s3 = 34.6f;	
+		String s4 = String.valueOf('A');
+		
+		System.out.println(s1);
+		System.out.println(s2);
+		System.out.println(((Object)s3).getClass().getTypeName());
+		System.out.println(s4);
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}
+
 	
 
 }
