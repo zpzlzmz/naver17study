@@ -20,11 +20,21 @@ public class Ex13For {
 		for(i=0; i<=4; i++) {
 			System.out.print("나이를 입력하세요 :");
 			age = sc.nextInt();
+				
 			
-			if(age>=40)
+				
+			if(age>=100 || age <=0) {
+				System.out.println("나이를 다시 입력하세요");
+				i--;
+				continue;
+			}
+				
+			if(age>=40){
 				upper +=1;
+				total += age;
+			}
 			
-			total += age;	
+				
 		}
 		avg = (double)total/i;
 		
