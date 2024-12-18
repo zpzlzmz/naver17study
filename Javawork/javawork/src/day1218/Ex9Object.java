@@ -74,7 +74,7 @@ public class Ex9Object {
 //		cars.getCarPrice();
 		writeCarInfo(car1);
 		writeCarInfo(car2);
-		writeCarInfo(car3)
+		writeCarInfo(car3);
 		
 		
 	}
