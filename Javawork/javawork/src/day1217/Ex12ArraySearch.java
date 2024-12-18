@@ -25,6 +25,10 @@ public class Ex12ArraySearch {
 					System.out.println(member[i]);
 					System.out.println("총 "+count+"명 검색 완료");
 				}
+				
+			}
+			if(count == 0) {
+				 System.out.println("\""+searchName+"\"씨 성을 가진 사람은 없습니다");
 			}
 		}
 	}
