@@ -14,7 +14,7 @@ public class Ex6Object {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println("x="+Ex6Object.x);//static 변수는 클래스 명으로 접근
+		System.out.println("x="+Ex6Object.x);//static 변수는 클래스 명으로 접근Static은 
 		System.out.println("x="+x);//같은 클래스 멤버일 경우 앞에 클래스 명을 생략 가능하다. 
 		
 		
@@ -28,5 +28,5 @@ public class Ex6Object {
 		showTitle();
 		
 	}
-
 }
+

@@ -8,7 +8,7 @@ public class Ex1ArraySwitch {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		/*
-		 * 인원 수입력후 인원수 만큼 이름과 자바, 스프링입력 후 총점, 평균, 등수, 등급을 구하시오
+		 * 인원 수입력후 인원수 만큼 이름과 자바, 스프링점수입력 후 총점, 평균, 등수, 등급을 구하시오
 		 */
 		int inwon;
 		int [] java,spring,sum, rank;

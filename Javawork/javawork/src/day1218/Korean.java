@@ -7,6 +7,7 @@ public class Korean {
 	String  ssn;
 	
 	public Korean(String n, String s) {
+		
 		this.name = n;
 		this.ssn = s;
 	}
