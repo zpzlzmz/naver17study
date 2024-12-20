@@ -1,5 +1,6 @@
 package day1219;
 
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Ex12SawonArray {
@@ -10,8 +11,10 @@ public class Ex12SawonArray {
 		System.out.println("=".repeat(100));
 	}
 	public static void writeMySawon(Sawon mySawon) {
-		System.out.println(mySawon.getSawonName()+"\t"+mySawon.getPosition()+"\t"+mySawon.getFamSu()+"\t"+mySawon.getGibonPay(mySawon.getPosition())
-		+"\t"+mySawon.getSudang(mySawon.getPosition())+"\t"+mySawon.getFamSudang(mySawon.getFamSu())+"\t"+mySawon.getTax()+"\t"+mySawon.getNetPay());
+		NumberFormat nf = NumberFormat.getInstance();
+		System.out.println(mySawon.getSawonName()+"\t"+mySawon.getPosition()+"\t"+mySawon.getFamSu()+"\t"+nf.format(mySawon.getGibonPay((mySawon.getPosition())))
+		+"\t"+nf.format(mySawon.getSudang(mySawon.getPosition()))+"\t"+nf.format(mySawon.getFamSudang(mySawon.getFamSu()))
+		+"\t"+nf.format(mySawon.getTax())+"\t"+nf.format(mySawon.getNetPay()));
 	}
 
 

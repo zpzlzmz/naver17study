@@ -135,3 +135,5 @@ public class Sawon {
 		return total;
 	}
 }
+
+//이거 다 겟터에 받을수 있는지 ? 
