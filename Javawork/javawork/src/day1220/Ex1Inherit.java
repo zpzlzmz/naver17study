@@ -28,7 +28,7 @@ public class Ex1Inherit {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub // 오버라이딩 -> 메서드 재 정의 : 부모가 흰색 소나타를 물려주면 내가 나의 사용처에 맞게 기능을 추가하는것
-		//상속 받았을때는 -> 접근자를 더 높은걸 못씀 ex) 부모 protected  자식이 가능한 접근자 ->protected, private. (public 이나 default 는 못씀)
+		//상속 받았을때는 -> 접근자를 더 높은걸 못씀 ex) 부모 protected  자식이 가능한 접근자 ->protected, public. (default나 private 는 못씀)
 		SubObj1 sub1 = new SubObj1();
 		SubObj1 sub2 = new SubObj1("Hello");
 	}
