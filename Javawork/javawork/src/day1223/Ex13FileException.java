@@ -28,7 +28,7 @@ public class Ex13FileException {
 			}catch(NumberFormatException e) {
 				System.out.println("문자가 있네요: "+e.getMessage());
 			}
-			}
+		}
 		System.out.println("총 합계:"+sum);
 	//열려진 자원들을 닫기; 여기서 열린 자원 -> FileReader, BufferedReader  (닫을때는 역순으로 닫기), 생성된 역순으로 닫기 br닫고 fr 닫기  
 		if(br!=null)
