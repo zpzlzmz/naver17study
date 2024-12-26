@@ -135,7 +135,7 @@ public class Ex1SawonArrayList {
 		else {
 			
 			System.out.println("** "+name+"님의 개인정보 **");
-			Sawon sawon = sawonList.get(idx);
+			Sawon sawon = sawonList.get(idx);//index 번지에 해당하는 사원 정보를 넣음
 			System.out.println("이름:"+sawon.getSawonName());
 			System.out.println("나이:"+sawon.getAge());
 			System.err.println("핸드폰:"+sawon.getHp());
@@ -229,3 +229,4 @@ public class Ex1SawonArrayList {
 	}
 
 }
+
