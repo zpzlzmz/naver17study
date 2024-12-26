@@ -65,9 +65,6 @@ public class Ex5TableStudent extends JFrame {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
 	}
 	
 	public void initDesign() {
