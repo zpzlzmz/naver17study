@@ -4,7 +4,7 @@
 select distinct job from emp order by job asc;
 
 --2.ename에 대소문자 상관없이 s를 포함하고 있는데이터 출력
-select ename,job,sal from emp where ename like 'S%';
+select ename,job,sal from emp where lower(ename) like '%s%';
 
 --3.ename의 3번째 글자가 L인 사람 조회
 select ename,job,sal from emp where ename like '__L%';
@@ -16,7 +16,7 @@ select ename,sal,comm from emp where sal>=1500 and comm is not null;
 select ename,hiredate,sal from emp where to_char(hiredate,'mm') = 05;
 
 --6. hiredate 입사일이 1985-01-01 이후에 입사한사람 출력(컬럼: ename,hiredate,sal)
-select ename,hiredate,sal from emp where hiredate>'1985-01-01';
+select ename,hiredate,sal from emp where hiredate>='1985-01-01';
 
 --7 sal이 1500-3000 사이인 사람을 출력하는데 관계연산자 and 를 이용해서 출력
 select ename,sal from emp where sal>=1500 and sal <=3000;
@@ -40,7 +40,7 @@ select * from emp where sal<(select round(avg(sal)) from emp);
 select ename,job,sal from emp where  ename like 'A%' or ename like 'S%' or ename like 'M%';
 
 --14 MGR을 GROUP로 인원수와 평균 SAL을 구하시오(평균SAL은 무조건 올림으로(무조건 올림은 ELIM인가 그거임 )) 무조건 올림 뭐더라 ; 
-select count(*) 인원수, round(avg(sal),0) 평균 from emp group by mgr; 
+select mgr,count(*) 인원수, round(avg(sal),-1) 평균 from emp where mgr is not null group by mgr; 
 
 --15 SCOTT의 sal 과 같은 sal 을 받는 사람을 조회(ename,sal)
 select ename,sal from emp where sal = (select sal from emp where ename like 'SCOTT');
