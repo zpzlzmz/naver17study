@@ -1,3 +1,91 @@
+-- 시퀀스를 생성해보자
+CREATE SEQUENCE SEQ1; --1부터 1씩 자동증가하는 시퀀스객체가 생성
+CREATE SEQUENCE SEQ2 START WITH 1 INCREMENT BY 1; --위와 같다
+CREATE SEQUENCE SEQ3 START WITH 1 INCREMENT BY 1 NOCACHE;--위와 같으나 CACHE사이즈를 20에서 0으로 변경
+CREATE SEQUENCE SEQ4 START WITH 1 INCREMENT BY 1 MAXVALUE 100 NOCACHE;--MAX값을 100까지만
+CREATE SEQUENCE SEQ5 START WITH 5 INCREMENT BY 5 NOCACHE;
+-- 시퀀스전체정보를 출력
+SELECT * FROM SEQ;
+
+--시퀀스값을 발생시켜보자-한번발생한값들은 두번다시 안나온다
+SELECT SEQ1.NEXTVAL,SEQ2.NEXTVAL,SEQ3.NEXTVAL,SEQ4.NEXTVAL,SEQ5.NEXTVAL FROM DUAL;
+
+--시퀀스 제거
+DROP SEQUENCE SEQ1;
+DROP SEQUENCE SEQ2;
+DROP SEQUENCE SEQ3;
+DROP SEQUENCE SEQ4;
+DROP SEQUENCE SEQ5;
+
+
+-- TABLE 생성
+CREATE TABLE TEST1 (
+    NUM NUMBER(3) PRIMARY KEY,
+    NAME VARCHAR2(20) NOT NULL,
+    TODAY DATE);
+    
+-- 구조 확인
+DESC TEST1;
+
+--데이타 추가
+INSERT INTO TEST1 VALUES (1,'CANDY',SYSDATE);--컬럼명 생략시 모든 컬럼을 순서대로 값을 넣는다
+--PRIMARY KEY 에 같은 값을 넣었을경우 어떤 오류가 나오는지 확인하기
+INSERT INTO TEST1 VALUES (1,'MIRA',SYSDATE);--오류 확인하기 ,무결성 제약조건으로 코드번호가 뜬다
+--이번에는 이름을빼고 넣은후 오류를 확인해보자
+INSERT INTO TEST1 (NUM,TODAY) VALUES (2,SYSDATE);--ORA-01400: NULL을 ("ANGEL"."TEST1"."NAME") 안에 삽입할 수 없습니다
+
+--이번에는 전체 데이타를 넣는데 순서를 바꿔서 넣어보자
+INSERT INTO TEST1 (NUM,TODAY,NAME) VALUES (2,'2024-11-20','MIRA');
+
+-- INSERT 를 2개 추가한상태에서 ROLLBACK을 해보자
+ROLLBACK;
+--다시 위의 INSERT 문 실행해서 넣어보자. 넣은후 COMMIT 하기
+COMMIT;
+--COMMIT 을 한후 ROLLBACK 해도 취소 안됨
+ROLLBACK;
+
+--데이타 확인
+SELECT * FROM TEST1;
+
+-- TEST2는 TEST1 과 같은데 제약조건이름을 추가해서 생성해보자
+CREATE TABLE TEST2(
+    NUM NUMBER(3) CONSTRAINT PK_TEST2_NUM PRIMARY KEY,
+    NAME VARCHAR2(20) CONSTRAINT NN_TEST2_NAME NOT NULL,
+    TODAY DATE);
+
+-- 오류 발생을 시켜보자
+INSERT INTO TEST2 VALUES (1,'이영자',SYSDATE);--추가됨
+INSERT INTO TEST2 VALUES (1,'김말자',SYSDATE);--오류발생,무결성 제약 조건(ANGEL.PK_TEST2_NUM)에 위배됩니다
+
+SELECT * FROM TEST2;
+
+--테이블의 구조변경 , ALTER TABLE
+--컬럼 추가 : ADD,컬럼 삭제: DROP COLUMN,컬럼 수정:MODIFY, 컬럼명변경:RENAME COLUMN
+
+-- TEST1 에 AGE NUMBER(3) 컬럼 추가하기,일단은 값은 NULL 로 들어감
+ALTER TABLE TEST1 ADD AGE NUMBER(3);
+
+--TEST1 에 ADDR VARCHAR2(30) 추가하는데 기본값을 SEOUL 로 주고싶다
+ALTER TABLE TEST1 ADD ADDR VARCHAR2(30) DEFAULT 'SEOUL';
+
+--TEST1 에 GAIPDAY DATE 으로 추가하는데 기본값을 현재날짜로
+ALTER TABLE TEST1 ADD GAIPDAY DATE DEFAULT SYSDATE;
+
+--TEST1의 TODAY 컬럼 삭제하기
+ALTER TABLE TEST1 DROP COLUMN TODAY;
+
+--TEST1의 NAME 의 길이를 20에서 30으로 수정해보자
+ALTER TABLE TEST1 MODIFY NAME VARCHAR2(30);
+
+--TEST1 의 ADDR 을 ADDRESS 로 컬럼명을 변경해보자
+ALTER TABLE TEST1 RENAME COLUMN ADDR TO ADDRESS;
+
+--TEST1 의 GAIPDAY를 WRITEDAY 로 이름변경
+ALTER TABLE TEST1 RENAME COLUMN GAIPDAY TO WRITEDAY;
+
+--TEST1 의 제약조건중 SYS_C008317(임시이름) 을 제거해보자
+ALTER TABLE TEST1 DROP CONSTRAINT SYS_C008317;
+
 --TEST1에 제약조건을 추가 : AGE 의 나이범위가 10~30으로 , 제약조건명:CK_TEST1_AGE
 
 ALTER TABLE TEST1 ADD CONSTRAINT CK_TEST1_AGE CHECK (AGE>=10 AND AGE<=30);
@@ -176,3 +264,13 @@ SELECT
 --부모 테이블을 삭제해보자
 DROP TABLE FOOD; -->당연히 삭제 안됨, 자식테이블을 먼저 삭제 해야지 부모테이블도 삭제가 가능 
 
+--booking 을 먼저 제거 후 Food 를 제거해야함 .(외부키로 연결되어 있으므로 )
+
+drop table booking;
+drop table food;
+
+drop table sawon;
+
+--시퀀스도 모두 삭제
+drop sequence seq_food;
+drop sequence seq1;
