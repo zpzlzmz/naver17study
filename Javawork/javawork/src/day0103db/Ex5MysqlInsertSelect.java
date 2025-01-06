@@ -136,7 +136,7 @@ public class Ex5MysqlInsertSelect {
 		conn = GetConnection();
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQue3ry(sql);
+			rs = stmt.executeQuery(sql);
 			
 			
 			
