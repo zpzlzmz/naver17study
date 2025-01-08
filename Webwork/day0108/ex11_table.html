@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		table.tb4{
+			width:300px;
+			border-collapse: collapse;
+			border:inset 3px green;
+		}
+		table.tb4>thead>tr{
+			height: 40px;
+			background-color: yellow;
+			color: blue;
+			
+		}
+		table.tb4>thead>tr>th{
+			border-right: dotted 1px gray;
+			border-bottom: double 4px red;
+		}
+		table.tb4>tbody>tr>td{
+			border:solid 1px gray;
+			background-color: lightcoral;
+			text-align: center;
+		}
+
+	</style>
+</head>
+<body>
+	<table class="tb4">
+		<thead>
+			<tr>
+				<th>이름</th><th>나이</th><th>혈액형
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>김길동</td><td>23세</td><td>A형</td>
+			</tr>
+			<tr>
+				<td>코길동</td><td>27세</td><td>B형</td>
+			</tr>
+			<tr>
+				<td>엄길동</td><td>25세</td><td>O형</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr color="red" width="500" align="left" size="5">
+</body>
+</html>

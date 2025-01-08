@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Hi+Melody&family=Playwrite+US+Modern+Guides&display=swap" rel="stylesheet">
+	<style>
+		/*마우스를 올렸을때 */
+		h3{
+			color: palevioletred;
+			background-color: greenyellow;
+			width: 600px;
+			text-align: center;
+			font-family: Bona Nova SC;
+		}
+		h3:hover
+		{
+			color: blue;
+			background-color: pink;
+			text-shadow: 3px 3px 3px gray;
+			cursor:crosshair;
+		}
+		/*마우스로 클릭했을때 스타일*/
+		h3:active{
+			border:groove 5px gold;
+
+		}
+		/*가로방향으로 메뉴가 나오도록 스타일 적용*/
+		div.menu>ul>li{
+			list-style: none; /*li앞의 표식 없애기*/
+			float: left; /*모든 요소들을 가로방향으로 나열*/
+			width: 100px;
+			border: solid 1px gray;
+			margin-right: 10px;
+			font-size: 16px;
+			text-align: center;
+			height: 40px;
+			/*align-content: center; 방법 1 */
+			line-height: 40px; /*방법 2 -> height 랑 같은 값을 준다*/
+			border-radius: 20px;
+			background-color: #afeeee;
+			font-family: Hi Melody;
+
+		}
+		div.menu>ul>li:hover{
+			color: white;
+			background-color: black;
+			box-shadow: 5px 5px 5px gray;
+
+		}
+
+	</style>
+</head>
+
+<body>
+	<h3>UL을 이용한 간단한 가로 메뉴</h3>
+	<div class="menu">
+		<ul>
+			<li>home</li>
+			<li>샵소개</li>
+			<li>방명록</li>
+			<li>게시판</li>
+			<li>오시는길</li>
+		</ul>
+	</div>
+	
+</body>
+</html>

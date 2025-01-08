@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.Happy{
+			font-size: 20px;
+			background-color: pink;
+			border: solid 3px green;
+		}
+
+		div.hello{
+			color: orange;
+			background-color: cyan;
+			font-size: 2em;
+			width: 300px;
+		}
+
+/*id 는 #으로 표현, 아이디는 고유 이름이므로 앞에 태그는안써도됨 */
+		#one{
+			border: dotted 2px gray;
+			background-color: #fef;
+		}
+		#two{
+			border: dashed green;
+			background-color: #ccf;
+			color: blue;
+		}
+		/*> : 바로 아래 태그 , 공백: 모든 자식 태그*/
+		div.java>div{
+			font-family: Impact;
+			color: red;
+		}
+		div.java>b{
+			font-family: 궁서체;
+			font-size: 2em;
+			font-style: italic;
+		}
+	</style>
+</head>
+<body>
+	<span style="color: blueviolet;" class="Happy">오늘은 수요일 입니다.</span>
+	<br></br>
+	<b class="Happy">Happy day!</b>
+	<u class="Happy">UnderLine</u>
+	<br>
+	<div class="hello">Hello!</div>
+	<div class="hello Happy">안녕하세요</div>
+	<div>Html Study</div>
+	<div id="one">Div Class ID one</div>
+
+	<div class="java">
+		Div Class Java
+		<div id="two">
+			Div ID two
+		</div>
+		<div>Div Class Java의 아래태그 Div</div>
+		<b>Div class Java의 아래 태그 b</b>
+	</div>
+	
+</body>
+</html>

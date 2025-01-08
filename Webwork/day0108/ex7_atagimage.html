@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		img{
+			width:100px;
+			height: 100px;
+			border-radius: 100px;
+		}
+		a{
+			text-decoration: none;
+			color:black;
+		}
+		div.figure>figure{
+			float: left;
+			width:110px;
+		}
+		div.figure>figure>figcaption{
+			text-align: center;
+		}
+		div.figure>marquee>figure>figcaption{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<marquee>Have a nice day!!</marquee>
+	<!--behavior : 기본은 scroll slide:는 한번 딱 하고 끝.,alternate-->
+	<marquee width="400" behavior="alternate">Have a nice day!!</marquee>
+	<div>
+		<a href="http://www.naver.com">
+			<img src="../photo/K-052.png" alt=""><b>Naver</b>
+		</a>
+	</div>
+	<div>
+		<a href="http://www.nate.com">
+			<figure>
+				<img src="../photo/K-041.png" alt="">
+				<figcaption style="padding-left: 40px;">
+					<b>Nate</b>
+				</figcaption>
+			</figure>
+		</a>
+		<a href="../photo/K-049.png">
+			<figure>
+				<img src="../photo/K-049.png" alt="">
+				<figcaption style="">
+					<b>예쁜 유리잔</b>
+				</figcaption>
+			</figure>
+		</a>
+	</div>
+	<hr>
+	<marquee behavior="slide" direction="">
+	<div class="figure">
+		<figure>
+			<img src="../photo/17.jpg" alt="">
+			<figcaption>
+				<b>신민아</b>
+			</figcaption>
+		</figure>
+	</div>
+	<div>
+		<figure>
+			<img src="../photo/18.jpg" alt="">
+			<figcaption>
+				<b>신세경</b>
+			</figcaption>
+		</figure>
+	</div>
+	<div>
+		<figure>
+			<img src="../photo/15.jpg" alt="">
+			<figcaption>
+				<b>설현</b>
+			</figcaption>
+		</figure>
+	</div>
+	</marquee>
+</body>
+</html>
