@@ -57,6 +57,45 @@
 
 
 		</script>
+	<hr>
+	<div class ="cars">
+		<script>
+			
 
+			for(let i=1; i<=15; i++){
+				document.write(`<img src="../mycar/mycar${i}.png"
+				style="width:120px; height:120px; border:2px solid orange; margin:10px">
+				`);
+			}
+			
+			
+			// let c =  document.querySelectorAll("div.cars>img");
+
+			// for(let s of c){
+			// 	s.onmouseover=function(){
+			// 		this.setAttribute("src","../photo/K-045");
+			// 	}
+			// 	s.onmouseout=function(){
+					
+			// 	}
+			// }
+
+		</script>
+	</div>
+	<script>
+		let cars = document.querySelectorAll("div.cars>img");
+		for(let car of cars){
+			let oldPhoto = "";
+			car.onmouseover=function(){
+				oldPhoto = this.getAttribute("src");
+				console.log(oldPhoto);
+				//새로운 이미지로 변경 
+				this.setAttribute("src" ,"../photo/K-049.png");
+			}
+			car.onmouseout = function(){
+				this.setAttribute("src",oldPhoto);
+			}
+		}
+	</script>
 	</body>
 </html>
