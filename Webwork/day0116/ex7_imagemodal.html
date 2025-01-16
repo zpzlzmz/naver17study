@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Gaegu&family=Jua&family=Nanum+Pen+Script&family=Playwrite+AU+SA:wght@100..400&family=Single+Day&display=swap" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<style>
+		body *{
+			font-family: 'Jua';
+			}
+		</style>
+	</head>
+
+	<body>
+
+		
+
+		<div style="margin: 30px;width: 500px;">
+			<h5 class="alert alert-danger">사진 클릭시 modal 다이얼로그 띄우기</h5>
+			<script>
+				let arr=[
+					["햄치즈샌드위치","10000"],
+					["꼬치구이","13000"],
+					["매운갈비국수","19000"],
+					["소고기카레","9900"],
+					["콘치즈","3000"],
+					["오므라이스","12000"],
+					["야채솥밥","14000"],
+					["에그 샌드위치","91000"],
+					["연근조림","6000"],
+					["스팸마요덮밥","8800"],
+					["망고빙수","55000"],
+					["순두부찌개","1111000"]
+				]
+
+				for(let i=1; i<=12; i++){
+					
+					let s =`
+						<div class="box">
+							<img src="../food/${i}.jpg" price = "${arr[i-1][1]}" fname="${arr[i-1][0]}" data-bs-toggle="modal" data-bs-target="#myModal">
+							
+						</div>
+					`;
+					document.write(s)
+
+				}
+
+				
+
+
+
+		
+			</script>
+			</div>
+			<!-- The Modal -->
+			<div class="modal" id="myModal">
+				<div class="modal-dialog">
+				<div class="modal-content">
+			
+					<!-- Modal Header -->
+					<div class="modal-header">
+					<h4 class="modal-title">원본 사진 보기</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+			
+					<!-- Modal body -->
+					<div class="modal-body">
+						<img src="" class="largephoto" style="width: 100%;" alt="">
+						<br>
+						<h4 class="price"></h4>
+					</div>
+			
+					<!-- Modal footer -->
+					<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+					</div>
+			
+				</div>
+				</div>
+			</div>
+							
+		
+		<script>
+			//- 안들어가면 딱히 "" 안써도 됨 쓰발 ; 존나 개귗낳았는데 안해도되네 
+			$("div.box").css({
+				"float":"left",
+				"width":"120px",
+				"height":"120px",
+				"border":"2px solid orange",
+				"background-color":"#fdf",
+				"margin":"20px",
+				"padding":"10px 10px",
+				"border-radius":"20px"
+			})
+			$("div.box>img").css({
+				
+				"width":"100px",
+				"height":"100px",
+				"cursor":"pointer",
+				"border-radius":"20px"
+			})
+
+
+
+			//사진 클릭시 이벤트 
+			$("div.box>img").click(function(){
+				let imgSrc=$(this).attr("src");
+				let price=$(this).attr("price");
+				// let mtitle=$(this).attr("fname");
+
+				$(".largephoto").attr("src",imgSrc);
+				$("h4.price").html(`<b>가격:${price}원</b>`);
+				// $("h4.modal-title").text(mtitle);
+				$("h4.modal-title").text($(this).attr("fname"));
+				
+				
+				
+			});
+
+		</script>
+	</body>
+</html>

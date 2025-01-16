@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Gaegu&family=Jua&family=Nanum+Pen+Script&family=Playwrite+AU+SA:wght@100..400&family=Single+Day&display=swap" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+		<style>
+		body *{
+			font-family: 'Jua';
+			}
+			.line1{
+				text-align: center;
+				border: 10px groove orange;
+				width: 300px;
+				height: 100px;
+				background-color: pink;
+			}
+			.line2{
+				border: 10px dotted gray;
+				width: 300px;
+				height: 200px;
+				background-color: lightcoral;
+			}
+			.bg1{
+				width: 300px;
+				height: 300px;
+				background: url(../mycar/mycar1.png) no-repeat center center ;
+				background-size: 250px 200px;
+				background-color: lightgray;
+			}
+
+			.style1{
+				font-size: 30px;
+				text-align: center;
+				color: blue;
+				font-family: "궁서체";
+			}
+			.photostyle{
+				border: 10px groove orange;
+				box-shadow: 5px 5px 5px gray;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--
+		addClass("클래스명"): 요소값에 해당 클래스가 추가 
+		removeClass("클래스명"): 요소에 있던 클래스가 삭제
+		removeClass() : 요소에 적용되었던 모든 클래스 삭제
+		toggleClass("클래스명"): 해당 클래스가 추가-제거를 반복 
+		-->
+		<button type="button" id="btn1" class="btn btn-outline-success btn-sm">line1만 적용</button>
+		<button type="button" id="btn2" class="btn btn-outline-success btn-sm">line2,bg1 적용</button>
+		<button type="button" id="btn3" class="btn btn-outline-success btn-sm">line1, style1 적용</button>
+		<button type="button" id="btn4" class="btn btn-outline-success btn-sm">line2, style1 적용</button>
+		<button type="button" id="btn5" class="btn btn-outline-success btn-sm">모두 삭제</button>
+
+		<br><br><br>
+		<div class="box">
+			good Day!!
+		</div>
+
+		<script>
+			$("#btn1").click(function(){
+				//기존에 추가된 모든 클래스를 먼저 제거
+				$("div.box").removeClass("line2 style1 bg1");
+				$("div.box").addClass("line1");
+			})
+			$("#btn2").click(function(){
+				$("div.box").removeClass("line1 style1");
+				$("div.box").addClass("line2 bg1");
+			})
+			$("#btn3").click(function(){
+				$("div.box").removeClass("line2 bg1");
+				$("div.box").addClass("line1 style1");
+			})
+			$("#btn4").click(function(){
+				$("div.box").removeClass("line1 bg1").addClass("line2 style1");
+			})
+			$("#btn5").click(function(){
+				$("div.box").removeClass("line1 line2 bg1 style1");
+				
+			})
+
+			
+		</script>
+
+		<hr>
+		<img src="../photo/13.jpg" width="200px" class="photo" alt="">
+		<script>
+			// $(".photo").hover(function(){
+			// 	$(".photo").addClass("photostyle");
+			// },function(){
+			// 	$(".photo").removeClass("photostyle");
+			// })
+
+			$(".photo").hover(function(){
+				$(this).toggleClass("photostyle");//toggleClass로 불렀다가 삭제했다가 동시에 가능함
+			})
+		</script>
+
+		<hr>
+		<img src="../mycar/mycar15.png" width="200" class="photo2" alt="">
+
+		<script>
+			$(".photo2").hover(function(){
+				$(".photo2").toggleClass("img-thumbnail rounded-circle");
+			})
+		</script>
+		<hr>
+		<h3 class="today">오늘은 목요일입니다</h3>
+		<script>
+			$("h3.today").hover(function(){
+				$(this).toggleClass("alert alert-danger");
+			}
+		)
+		</script>
+	</body>
+</html>
