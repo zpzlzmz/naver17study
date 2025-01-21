@@ -1,0 +1,3 @@
+D:\Naver1210\Study\JSPwork\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\work\Catalina\localhost\jspProject\org\apache\jsp\day0121
+
+JSP 저장 폴더

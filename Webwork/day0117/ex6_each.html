@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Gaegu&family=Jua&family=Nanum+Pen+Script&family=Playwrite+AU+SA:wght@100..400&family=Single+Day&display=swap" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+		<style>
+		body *{
+			font-family: 'Jua';
+			}
+		</style>
+	</head>
+
+	<body>
+		<h6 class="alert alert-danger">div.box에 배경색이 랜덤으로 들어가도록<br
+		>each문을 이용해 적용하고 (가로방향으로 배치css 추가 해라)<br>마우스를 올리면 배경색을 얻어서 h2에 출력하도록</h6>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+
+		<h2 class="txt" style="clear: both; margin: 20px 50px; width: 200px;"></h2>
+	</body>
+
+
+	<script>
+		$("div.box").css({
+			"width":"50px",
+			"height":"50px",
+			"border":"1px solid gray",
+			"margin":"20px",
+			"float" : "left",
+			"cursor":"pointer",
+			"align" : "center",
+			"line-height":"50px"
+
+		});
+
+		$(".txt").css({
+			"position":"absolute",
+			"left":"130px",
+			"top":"250px",
+			"font-size":"50px"
+		})
+
+		$("div.box").each(function(idx,ele){
+			let r= parseInt(Math.random()*256);
+			let g= parseInt(Math.random()*256);
+			let b= parseInt(Math.random()*256);
+			let color = `rgb(${r},${g},${b})`;
+
+			$(ele).css("background-color",color);
+			$(ele).text(idx+1);
+
+		});
+
+
+		$("div.box").mouseover(function(){
+			let bcolor = $(this).css("background-color");
+			$("h2.txt").text(bcolor);
+			$("h2.txt").css("background-color",bcolor);
+		});
+	</script>
+
+	<hr>
+	<button type="button" id="btn1">after로 메세지 추가</button>
+	<script>
+		let n =1;
+		$("#btn1").click(function(){
+			let s=`<h5 class="m">Hello ${n++}</h5>`;
+			if($(this).next())
+				$(this).next().remove()
+			
+				$(this).after(s); 
+		})
+	</script>
+</html>
