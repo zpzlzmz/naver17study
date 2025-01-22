@@ -16,53 +16,50 @@
 			body *{
 				font-family: 'Jua';
 				}
-				.tab th{
-				background-color:pink;
+			div.box{
+				float:left;
+				width:150px;
+				height:auto;
+				margin:5px;
+				border:2px solid gray;
+				border-radius:20px;
+				text-align:center;
+				background-color:lightgray;
+				padding:5px;
+				
 				}
+			div.box>figure>img{
+				width:120px;
+				height:120px;
+				border-radius:20px;
+			}
+			div.box>figrue>figcaption{
+				text-align:center;
+			}
 	</style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
-
 <%
-	//FoodDataList 생성 
 	FoodDataList dataList = new FoodDataList();
-	//list 전체 데이터 반환받기 
 	List<FoodDto> list = dataList.getAllDatas();
-%> 
+%>
 <body>
 
-	<table class="tab table table-bordered" style="width:500px;">
-		<caption align="top">
-			<h3><b>배달 음식 목록</b></h3>
-		</caption>
-		<tr>
-			<th width="50">번호</th>
-			<th width="200">메뉴</th>
-			<th width="60">수량</th>
-			<th width="100">가격</th>
-			<th width="150">배달일</th>
-		
-		</tr>
-		<%
-		int no=0;
-		for(FoodDto dto:list){
-			%>
-			<tr>
-			<td align="center"><%=++no %></td>
-			<td>
-				<img src="../image/food/<%=dto.getFoodPhoto() %>" 
-				width="50" height="50" border="1" class="rounded-circle"
-				hspace="10">
-				<b><%=dto.getFoodName()%></b>
-				</td> 
-				<td align="right"><%=dto.getSu()%>개</td>
-				<td align="right"><%=dto.getFoodPrice() %>원</td>
-				<td><%=dto.getFoodDay() %></td>
-			</tr>
-		<%}
+<%
+	for(FoodDto dto:list){
 		%>
-	</table>
+		<div class="box">
+			<figure>
+				<img src="../image/food/<%=dto.getFoodPhoto() %>">
+				<figcaption>
+					<b><%=dto.getFoodName() %></b><br>
+					<%=dto.getFoodPrice() %>원
+				</figcaption>
+			</figure>
+		</div>
+		
+	<%}
+%>
 
 </body>
 </html>
