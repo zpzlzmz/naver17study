@@ -136,7 +136,7 @@ public class SawonDao {
 		conn=connect.getConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//바인딩 5개
+			//바인딩 1개
 			pstmt.setString(1, num);
 			
 			pstmt.execute();
