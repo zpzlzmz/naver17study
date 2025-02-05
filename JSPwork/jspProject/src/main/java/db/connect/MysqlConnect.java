@@ -8,9 +8,15 @@ import java.sql.SQLException;
 
 public class MysqlConnect {
 	static final String MYSQL_DRIVER = "com.mysql.cj.jdbc.Driver";
+	//로컬 mysql 서버 
 	String url = "jdbc:mysql://localhost:3306/study502?serverTimezone=Asia/Seoul";
 	String username="root";
 	String password="1234";
+	
+	//네이버 클라우드 mysql 서버 
+	String url2 = "jdbc:mysql://db-324oc2-kr.vpc-pub-cdb.ntruss.com:3306/studydb?serverTimezone=Asia/Seoul";
+	String username2="study";
+	String password2="bitcamp!@#123";
 	
 	public MysqlConnect() {
 		// TODO Auto-generated constructor stub
@@ -31,6 +37,17 @@ public class MysqlConnect {
 		}
 		return conn;
 	}
+	
+	public Connection getNaverCloudConnection() {
+		Connection conn=null;
+		try {
+			conn = DriverManager.getConnection(url2,username2,password2);
+		}catch(SQLException e) {
+			System.out.println("네이버 클라우드 mysql 서버 접속 실패:" +e.getMessage());
+		}
+		return conn;
+	}
+	
 	public void dbClose(PreparedStatement pstmt, Connection conn) {
 		try {
 			if(pstmt!=null) pstmt.close();
@@ -49,6 +66,8 @@ public class MysqlConnect {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	
 }

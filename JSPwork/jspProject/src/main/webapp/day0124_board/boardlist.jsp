@@ -77,13 +77,16 @@
 						for(SimpleBoardDto dto:list){
 							List<SimpleAnswerDto> alist = adao.getAnswerByNum(dto.getNum());
 							int answerCount = alist.size(); 
+							
 							%>
 							<tr align="center">
 								<td><%=no-- %></td>
 								<td align="left">
 								<a href="./contentdetail.jsp?num=<%=dto.getNum() %>">
 								<div style="text-overflow:ellipsis; overflow:hidden; white-space:nowrap; display:black; max-width:200px;">
-								<%=dto.getSubject() %>(<%= answerCount %>)
+								<%=dto.getSubject() %><%if(answerCount>0){
+									%>(<%= answerCount %>)<%
+								} %> 
 								</a>
 								</div>
 								</td>

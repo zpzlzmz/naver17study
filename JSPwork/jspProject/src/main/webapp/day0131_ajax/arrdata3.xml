@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<list>
+	<shop code="A100">
+		<sang>화이트원피스</sang>
+		<photo>../image/photo2/2.jpg</photo>
+		<price>23000원</price>
+	</shop>
+	<shop code="A101">
+		<sang>쁘띠스카프</sang>
+		<photo>../image/photo2/10.jpg</photo>
+		<price>5000원</price>
+	</shop>
+	<shop code="A102">
+		<sang>명품머리끈</sang>
+		<photo>../image/photo2/26.jpg</photo>
+		<price>52000원</price>
+	</shop>
+	<shop code="A103">
+		<sang>레이스자켓</sang>
+		<photo>../image/photo2/31.jpg</photo>
+		<price>83000원</price>
+	</shop>
+	
+	
+</list>
