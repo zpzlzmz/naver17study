@@ -17,9 +17,9 @@
     // 아이디와 비밀번호 검증
     if (dto != null && dto.getPasswd().equals(password)) {
         session.setAttribute("user", dto);
-        out.print("success");  // ✅ success만 반환
+        out.print("success");  
     } else {
-        out.print("fail");  // ✅ fail만 반환
+        out.print("fail");  
     }
 %>
 

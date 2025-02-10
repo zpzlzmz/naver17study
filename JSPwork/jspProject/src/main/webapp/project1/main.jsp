@@ -279,8 +279,8 @@ $(function() {
         });
     });
         
-    var cart = [];
-
+    
+	var cart = [];
     // 담기 버튼 클릭 이벤트
     $("#addToCartButton").click(function() {
     var name = $("#modalTitle").text();
@@ -294,7 +294,7 @@ $(function() {
         imageUrl: imageUrl,
         price: price
     };
-    
+    var cart1 = JSON.parse(localStorage.getItem("cart")) || [];    
     
     console.log("장바구니에 담았습니다");
     updateCart();  // 장바구니 상태 갱신
@@ -344,26 +344,11 @@ $(function() {
             // 장바구니 내용 업데이트
             $("#cartDropdown").html(cartHtml);
             
-         // 결제 버튼 클릭 이벤트 추가
+         	// 결제 버튼 클릭 이벤트 추가
             $("#checkoutButton").click(function() {
-                // 장바구니 데이터 서버로 전송
-                $.ajax({
-                    type: "POST",
-                    url: "./processpayment.jsp",  // 결제 처리할 JSP 페이지 (예시)
-                    data: {
-                        cart: JSON.stringify(cart)  // 장바구니 배열을 JSON 형식으로 변환하여 전송
-                    },
-                    success: function(response) {
-                        console.log("결제 성공:", response);
-                        // 결제 후 장바구니 비우기
-                        cart = [];
-                        updateCart();  // 장바구니 내용 업데이트
-                        alert("결제가 완료되었습니다.");
-                    },
-                    error: function() {
-                        alert("결제 처리에 실패했습니다. 다시 시도해 주세요.");
-                    }
-                });
+                alert("결제가 완료되었습니다.");
+                cart = [];  // 장바구니 비우기
+                updateCart();  // UI 업데이트
             });
 
 
@@ -377,6 +362,10 @@ $(function() {
 
 });
 
+<%
+	String nickname = (String) session.getAttribute("nickname");
+	if(nickname == null) nickname = "손";
+%>
 
 </script>
 
@@ -385,7 +374,7 @@ $(function() {
 	<div class="navbar">
 		<div class="logo" onclick="location.href='main.jsp'">놀고 먹자</div>
 		<div class="user-info">
-			<span id="userWelcome">님 어서오세요!</span>
+			<span id="userWelcome"><%=nickname %>님 어서오세요!</span>
 			<button onclick="toggleCart()">장바구니</button>
 			<button onclick="logout()">로그아웃</button>
 		</div>
@@ -398,7 +387,7 @@ $(function() {
 	</div>
 
 	<div id="burger-list" class="burger-container">
-		<!-- 여기에 버거 리스트 들어갈 예정 -->
+		
 	</div>
 
 

@@ -127,11 +127,11 @@
     </style>
 </head>
 <body>
-    <!-- 배경에 큰 타이틀 -->
+    
     <h1 class="background-title">놀고먹자</h1>
 
     <div class="login-container">
-        <!-- 로그인 박스 안의 작은 타이틀 -->
+       
         <h2>로그인</h2>
         <table>
             <tr>
@@ -150,11 +150,11 @@
     </div>
     <script type="text/javascript">
     $(".login-btn").click(function() {
-        // 아이디와 비밀번호 값 가져오기
+        
         var username = $("#username").val();
         var password = $("#password").val();
 
-        // 값 확인 (간단한 검증 예시)
+       
         if (username == "" || password == "") {
             alert("아이디와 비밀번호를 입력해주세요!");
         } else {
@@ -164,9 +164,9 @@
         	    data: { userID: username, password: password },
         	    url: "./loginaction.jsp",
         	    success: function(res) {
-        	        console.log("서버 응답:", res.trim());  // ✅ 응답 공백 제거 후 출력
-        	        if (res.trim() === "success") {  // ✅ 정확한 비교
-        	            window.location.replace("main.jsp");  // 로그인 성공 시 페이지 이동
+        	        console.log("서버 응답:", res.trim()); 
+        	        if (res.trim() === "success") {  
+        	            window.location.replace("main.jsp");  
         	        } else {
         	            alert("아이디 또는 비밀번호가 잘못되었습니다");
         	        }
@@ -179,9 +179,9 @@
 
     // 회원가입 버튼 클릭 시 이벤트
     $(".signup-btn").click(function() {
-        // 회원가입 버튼 클릭 시 알림
+        
         window.location.href="signuppage.jsp";
-        // 여기에서 실제 회원가입 페이지로 이동하거나, 회원가입 폼을 보여주는 로직 추가
+        
     });
 </script>
 </body>
