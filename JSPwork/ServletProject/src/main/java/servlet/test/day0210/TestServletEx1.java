@@ -18,18 +18,20 @@ public class TestServletEx1 extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//request ->set Attribute 로 저장함(각종 데이터 저장하기)
+		
+		//request 에 각종 데이타 저장하기
 		request.setAttribute("today", new Date());
 		request.setAttribute("myname", "이영자");
-		request.setAttribute("myage", 19); 
+		request.setAttribute("myage", 19);
 		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		request.setAttribute("today2",sdf.format(new Date()));
 		
-		SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		request.setAttribute("today2", sdf.format(new Date()));
+		//jsp 파일로 포워드
+		//포워드:request 가 그대로 전달,url주소 안바뀜
+		RequestDispatcher rd=request.getRequestDispatcher("../jstltest/result1.jsp");
+		rd.forward(request, response);
 		
-		//jsp 파일로 포워드 
-		RequestDispatcher rd = request.getRequestDispatcher("../jstltest/result1.jsp");
-		rd.forward(request,response);
 	}
 
 	/**
