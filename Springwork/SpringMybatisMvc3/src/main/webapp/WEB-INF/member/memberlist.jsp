@@ -21,6 +21,9 @@
 
 </head>
 <body>
-
+	
+	<jsp:include page="../../layout/title.jsp"/>
+	
+	
 </body>
 </html>

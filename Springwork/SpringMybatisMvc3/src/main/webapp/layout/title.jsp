@@ -71,6 +71,9 @@
 			<a href="${root}/member/form">회원가입</a>
 		</li>
 		<li>
+			<a href="${root}/member/list">회원목록</a>
+		</li>
+		<li>
 			<a href="${root}/board/list">회원게시판</a>
 		</li>
 		<li>

@@ -23,53 +23,132 @@
 					border: 1px solid gray;
 				}
 	</style>
+	<script type="text/javascript">
+	 	let jungbok=false;
+	 	
+	 	$(function(){
+	 		$("#btnidcheck").click(function(){
+	 			let myid=$("#myid").val();
+	 			$.ajax({
+	 				type:"get",
+	 				dataType:"json",
+	 				data:{"myid":myid},
+	 				url:"./idcheck",
+	 				success:function(res){
+	 					if(res.result=='success'){
+	 						jungbok=true;
+	 						alert("사용가능한 아이디 입니다")
+	 					}else{
+	 						jungbok=false;
+	 						alert("존재하는 아이디 입니다\n다시 입력해주세요")
+	 						$("#myid").val("");
+	 					}
+	 				}
+	 			})
+	 		});
+	 	});
+	 	
+	 	//아이디를 입력시 중복변수 다시 false로 
+	 	$("#myid").keyup(function(){
+	 		jungbok = false;
+	 		
+	 	})
+	 	
+		function check(){
+			let p1=$("#mpass").val();
+			let p2=$("#mpass2").val();
+			if(p1!=p2){
+				alert("비밀번호가 맞지 않습니다.");
+				return false;
+			}
+			if(!jungbok){
+				alert("중복체크 버튼을 눌러주세요");
+				return false;
+			}
+			
+		}
+	</script>
 
 </head>
 <body>
 <jsp:include page="../../layout/title.jsp"/>
-<div style="margin:10px 30px; width:500px;">
-	<form action="./insert" method="post" enctype="multipart/form-data">
+<div style="margin: 10px 30px;width: 500px;">
+	<form action="./insert" method="post" enctype="multipart/form-data"
+	onsubmit="return check()">
 		<table class="table table-bordered tab1">
-		<tbody>
-			<tr>
-				<td width="150" rowspan="4">
-					<input type="file" name="upload" style="width:100px;" onchange="preview(this)">
-					<br>
-					<img src="" id="showimg" onerror="this.src='../save/noimage.png">
-					
-					<!-- 파일 선택시 제이쿼리로ㅓ 미리보기 코드 -->
-					<script type="text/javascript">
-						function preview(tag){
-							let f=tag.files[0];
-							if(!f.type.match("image.*")){
-								alert("이미지 파일만 가능합니다");
-								return ;
-							}
-							
-							if(f){
-								let reader=new FileReader();
-								reader.onload=function(e){
-									$("#showimg").attr("src",e.target.result);	
+			<tbody>
+				<tr>
+					<td width="150" rowspan="4">
+						<input type="file" name="upload" style="width: 100px;"
+						onchange="preview(this)">
+						<br>
+						<img src="" id="showimg" onerror="this.src='../noimage.png'">
+						
+						<!-- 파일 선택시 제이쿼리로 미리보기 코드 -->
+						<script>
+							function preview(tag)
+							{
+								let f=tag.files[0];
+								if(!f.type.match("image.*")){
+									alert("이미지 파일만 가능합니다");
+									return;
 								}
-								reader.readAsDataURL(f);
 								
+								if(f){
+									let reader=new FileReader();
+									reader.onload=function(e){
+										$("#showimg").attr("src",e.target.result);
+									}
+									reader.readAsDataURL(f);
+								}
 							}
-						}
-					</script>
-				</td>
-				<th width="70">이름</th>
-				<td>
-					<input type="text" name="mname" class="form-control" required="required">
-				</td>
-				<th width="70">아이디</th>
-				<td>
-					<input type="text" name="myid" class="form-control" required="required">
-				</td>
-			</tr>
-		</tbody>
+						</script>
+					</td>
+					<th width="70">이름</th>
+					<td>
+						<input type="text" name="mname" class="form-control"
+						required="required">
+					</td>
+				</tr>
+				<tr>
+					<th>아이디</th>
+					<td class="input-group">
+						<input type="text" name="myid" id="myid" class="form-control"
+						required="required">
+						<button type="button" class="btn btn-sm btn-danger"
+						id="btnidcheck">중복체크</button>
+					</td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td class="input-group">
+						<input type="password" name="mpass" id="mpass" class="form-control"
+						placeholder="비밀번호1" required="required">
+						<input type="password" name="mpass2" id="mpass2" class="form-control"
+						placeholder="비밀번호2" required="required">
+						
+					</td>
+				</tr>
+				<tr>
+					<th>핸드폰</th>
+					<td class="input-group">
+						<input type="text" name="mhp" class="form-control"
+						required="required">					
+					</td>
+				</tr>
+				<tr>
+					<th>주 소</th>
+					<td colspan="2">
+						<input type="text" name="maddr" class="form-control">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center">
+						<button type="submit" class="btn btn-sm btn-success">회원가입</button>
+					</td>
+				</tr>
+			</tbody>		
 		</table>
-		
-		
 	</form>
 </div>
 </body>
