@@ -72,13 +72,9 @@ public class MemberAddController {
 			}
 		}
 		
-		dto.setMname(dto.getMname());
-		dto.setMyid(dto.getMyid());
-		dto.setMpass(dto.getMpass());
-		dto.setMhp(dto.getMhp());
-		dto.setMaddr(dto.getMaddr());
+		
 		memberService.insertMember(dto);
-		System.out.println(dto);
+		
 		
 		
 		return "redirect:../";

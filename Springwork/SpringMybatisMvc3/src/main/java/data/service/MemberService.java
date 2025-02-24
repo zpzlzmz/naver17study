@@ -25,6 +25,26 @@ public class MemberService {
 	} 
 	
 	public List<MemberDto> getAllMember(){
-		return memberMapper.getgetAllMember();
+		return memberMapper.getAllMember();
+	}
+	
+	public void deleteMember(int num) {
+		memberMapper.deleteMember(num);
+	}
+	
+	public boolean loginCheck(String loginid, String loginpass) {
+		return memberMapper.loginCheck(loginid, loginpass) == 1?true:false;
+	}
+	
+	public MemberDto getSelectByNum(int num) {
+		return memberMapper.getSelectByNum(num);
+	}
+	
+	public MemberDto getSelectByMyid(String myid) {
+		return memberMapper.getSelectByMyid(myid);
+	}
+	
+	public void changePhoto(int num, String mphoto) {
+		memberMapper.changePhoto(mphoto, num);
 	}
 }
