@@ -17,15 +17,19 @@ import org.springframework.web.multipart.MultipartFile;
 import data.dto.ShopRepleDto;
 import data.service.ShopRepleService;
 import jakarta.servlet.http.HttpServletRequest;
+import naver.storage.NcpObjectStorageService;
 
 //forward 나 redirect 이런거 안됨 
 @RestController
 public class ShopRepleController {
-	
+
 	@Autowired
 	ShopRepleService repleService;
+	private String bucketName = "bitcamp.bucket";
 
-	
+	@Autowired
+	NcpObjectStorageService storageService;
+
 	@PostMapping("/shop/addreple")
 	public void insertReple(
 			HttpServletRequest request,
@@ -34,16 +38,18 @@ public class ShopRepleController {
 			@RequestParam MultipartFile upload
 			) {
 		//save의 실제 경로 구하기 
-		String uploadFolder= request.getSession().getServletContext().getRealPath("/save");
-		//업로드할 파일 명 구하기(random uuid.확장자)
-		String uploadFilename = UUID.randomUUID()+"."+upload.getOriginalFilename().split("\\.")[1];
-		//사진 업로드
-		try {
-			upload.transferTo(new File(uploadFolder+"/"+uploadFilename));
-		} catch (IllegalStateException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * String uploadFolder=
+		 * request.getSession().getServletContext().getRealPath("/save"); //업로드할 파일 명
+		 * 구하기(random uuid.확장자) String uploadFilename =
+		 * UUID.randomUUID()+"."+upload.getOriginalFilename().split("\\.")[1]; //사진 업로드
+		 * try { upload.transferTo(new File(uploadFolder+"/"+uploadFilename)); } catch
+		 * (IllegalStateException | IOException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */
+		
+		String uploadFilename = storageService.uploadFile(bucketName, "shop", upload);
+		
 		//dto생성
 		ShopRepleDto dto = new ShopRepleDto();
 		dto.setNum(num);
@@ -54,36 +60,37 @@ public class ShopRepleController {
 		
 		
 	}
-	
-	
+
 	@GetMapping("/shop/replelist")
-	public List<ShopRepleDto> repleList(
-				@RequestParam int num
-			){
-		
+	public List<ShopRepleDto> repleList(@RequestParam int num) {
+
 		List<ShopRepleDto> list = null;
 		list = repleService.getRepleByNum(num);
-		
+
 		return list;
 	}
-	
+
 	@GetMapping("/shop/repledelete")
-	public void deleteShopReple(@RequestParam int idx,HttpServletRequest request) {
+	public void deleteShopReple(@RequestParam int idx, HttpServletRequest request) {
+		
+		//네이버 스토리지 삭제 사진
+		//삭제할 사진명
+		String photo=repleService.getPhoto(idx);
+		storageService.deleteFile(bucketName, "shop", photo);
 		
 		repleService.deleteShopReple(idx);
-		
+
 	}
-	
+
 	@GetMapping("shop/likes")
-	public Map<String, Integer> getLikes(@RequestParam int idx){
-		
+	public Map<String, Integer> getLikes(@RequestParam int idx) {
+
 		repleService.updateLike(idx);
-		int likes=repleService.getLikes(idx);
+		int likes = repleService.getLikes(idx);
 		Map<String, Integer> map = new HashMap<>();
 		map.put("likes", likes);
-		
+
 		return map;
 	}
-	
-	
+
 }

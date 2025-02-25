@@ -184,7 +184,7 @@ img.mini{
 	            let s = "";
 	            $.each(res, function(idx, ele){
 	                s += `<div style="display:flex;" data-idx="\${ele.idx}">
-	                        <div><img src="../save/\${ele.photo}" class="mini" style="width:50px; height:50px;" data-bs-toggle="modal" data-bs-target="#myMiniPhotoModal"></div>
+	                        <div><img src="${naverurl}/shop/\${ele.photo}" class="mini" style="width:50px; height:50px;" data-bs-toggle="modal" data-bs-target="#myMiniPhotoModal"></div>
 	                        <div style="flex-direction:column; margin-left:20px; width:400px;">
 	                            <div>
 	                                <span style="font-size:0.7em">\${ele.writetime}</span>&nbsp;&nbsp;
@@ -240,10 +240,9 @@ img.mini{
 	<div style="margin: 20px; width: 500px;">
 		<table>
 			<tr>
-				<td width="120"><c:forTokens var="photo" items="${dto.sphoto }"
-						delims=",">
-						<img src="../save/${photo }" class="small"
-							onerror="this.src='../save/noimage.png'">
+				<td width="120">
+				<c:forTokens var="photo" items="${dto.sphoto}" delims=",">
+						<img src="${naverurl}/shop/${photo}" class="small" onerror="this.src='../noimage.png'">
 						<script type="text/javascript">
 							$("img.small").click(
 									function() {
@@ -252,7 +251,7 @@ img.mini{
 									});
 						</script>
 					</c:forTokens></td>
-				<td><img src="../save/${dto.mainphoto}" class="large"></td>
+				<td><img src="${naverurl}/shop/${dto.mainphoto}" class="large"></td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -309,7 +308,7 @@ img.mini{
 
 		</table>
 		<div style="margin: 20px;" class="replelistarea"></div>
-
+	
 	</div>
 </body>
 </html>

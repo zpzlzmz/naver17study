@@ -50,7 +50,7 @@ body * {
 <body>
 <jsp:include page="../../layout/title.jsp"/>
 	<div style="margin: 20px; width: 500px;">
-		<h5 class="alert alert-danger">
+		<h5 class="alert alert-danger">	
 			총 ${totalCount}개의 상품이 있습니다.
 
 			<button type="button" class="btn btn-success btn-sm"
@@ -58,10 +58,11 @@ body * {
 		</h5>
 	</div>
 	<div style="margin: 20px;" class="shopbox">
-		<c:forEach var="dto" items="${list }">
+		<c:forEach var="dto" items="${list}">
 			<figure>
-				<a href="./detail?num=${dto.num }" style="color:black">
-				<img src="../save/${dto.mainphoto }" onerror="this.src='../save/noimage.png'">
+				<a href="./detail?num=${dto.num}" style="color:black">
+				<%-- <img src="../save/${dto.mainphoto }" onerror="this.src='../noimage.png'"> --%>
+				<img src="${fronturl}/shop/${dto.mainphoto}${backurl}" onerror="this.src='../noimage.png'">
 				</a>
 				<figcaption>
 					<h6>

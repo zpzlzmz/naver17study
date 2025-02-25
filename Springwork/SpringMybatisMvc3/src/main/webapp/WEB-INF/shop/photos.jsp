@@ -55,7 +55,8 @@
 	
 	<div class="photos">
 		<c:forTokens var="onephoto" items="${sphoto}" delims=",">
-			<img src="../save/${onephoto}">
+			<%-- <img src="../save/${onephoto}"> --%>
+			<img src="${fronturl}/shop/${onephoto}${backurl}">
 			<i class="bi bi-x-circle photodel" pname="${onephoto}"></i>
 		</c:forTokens>
 	</div>

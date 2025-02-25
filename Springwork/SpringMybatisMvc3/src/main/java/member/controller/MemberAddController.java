@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import data.dto.MemberDto;
 import data.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
+import naver.storage.NcpObjectStorageService;
 
 @Controller
 @RequestMapping("/member")
@@ -26,6 +27,13 @@ public class MemberAddController {
 
 	@Autowired
 	MemberService memberService;
+	
+	//버켓 이름 얻기 
+	private String bucketName="bitcamp.bucket";
+	
+	@Autowired
+	NcpObjectStorageService stroageService;
+	
 	
 	@GetMapping("/form")
 	public String form()
@@ -56,23 +64,20 @@ public class MemberAddController {
 			) {
 		//사진 선택 안했을 경우 upload의 파일명을 확인 
 		
-		String uploadFolder= request.getSession().getServletContext().getRealPath("/save");
-		
-		if(upload == null || upload.isEmpty()){
-			dto.setMphoto("No");
-		}
-		else {
-			String uploadFilename = UUID.randomUUID()+"."+upload.getOriginalFilename().split("\\.")[1];
-			dto.setMphoto(uploadFilename);
-			try {
-				upload.transferTo(new File(uploadFolder+"/"+uploadFilename));
-			} catch (IllegalStateException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		
+		/*
+		 * String uploadFolder=
+		 * request.getSession().getServletContext().getRealPath("/save");
+		 * 
+		 * if(upload == null || upload.isEmpty()){ dto.setMphoto("No"); } else { String
+		 * uploadFilename =
+		 * UUID.randomUUID()+"."+upload.getOriginalFilename().split("\\.")[1];
+		 * dto.setMphoto(uploadFilename); try { upload.transferTo(new
+		 * File(uploadFolder+"/"+uploadFilename)); } catch (IllegalStateException |
+		 * IOException e) { // TODO Auto-generated catch block e.printStackTrace(); } }
+		 */
+		//네이버 storager 에 사진 저장 하기  -> 네이버 object stroage 에 사진을 업로드 후 업로드한 파일명을 반환 
+		String uploadFilename=stroageService.uploadFile(bucketName, "member", upload);
+		dto.setMphoto(uploadFilename);
 		memberService.insertMember(dto);
 		
 		

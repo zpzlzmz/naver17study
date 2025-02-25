@@ -47,4 +47,8 @@ public class MemberService {
 	public void changePhoto(int num, String mphoto) {
 		memberMapper.changePhoto(mphoto, num);
 	}
+	
+	public void updateMember(MemberDto dto) {
+		memberMapper.updateMember(dto);
+	}
 }

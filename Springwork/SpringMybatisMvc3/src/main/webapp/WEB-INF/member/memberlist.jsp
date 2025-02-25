@@ -72,7 +72,11 @@ img.small{
 					<tr>
 						<td>
 							<input type="checkbox" class="numchk" num="${dto.num}">
-							<img src="../save/${dto.mphoto }" class="small" onerror="this.src='../noimage.png'">
+							<%-- <img src="../save/${dto.mphoto }" class="small" onerror="this.src='../noimage.png'"> --%>
+							
+							<%-- <img src="${naverurl}/member/${dto.mphoto }" class="small" onerror="this.src='../noimage.png'"> --%>
+							<!-- 원본 사진에서 30x30 으로 자른 thumbnail 로 출력할려는거  -->
+							<img src="${fronturl }/member/${dto.mphoto}${backurl}" class="small" onerror="this.src='../noimage.png'">
 							${dto.mname}
 						</td>
 						<td>${dto.myid }</td>

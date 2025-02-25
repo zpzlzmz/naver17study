@@ -24,7 +24,7 @@ public class ShopListController {
 		
 		//총 상품 갯수 
 		int totalCount = shopService.getTotalCount();
-		
+		/* System.out.println(totalCount); */
 		//전체상품
 		List<ShopDto> list = shopService.getAllSangpum();
 		//메인 사진 등록
@@ -50,6 +50,8 @@ public class ShopListController {
 		
 		
 		//모델에 저장
+		model.addAttribute("fronturl","https://f8l9t99j8727.edge.naverncp.com/RNV7xv6BFG");
+		model.addAttribute("backurl","?type=f&w=100&h=120&faceopt=true&ttype=jpg");
 		model.addAttribute("totalCount",totalCount);
 		model.addAttribute("list",list);
 		//포워드

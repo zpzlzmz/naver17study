@@ -13,4 +13,6 @@ public interface ShopRepleMapper {
 	public List<ShopRepleDto> getRepleByNum(int num);
 	public void updateLikes(int idx);
 	public int getLikes(int idx);
+	public String getPhoto(int idx);
+
 }

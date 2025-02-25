@@ -28,5 +28,8 @@
 	<update id="changePhoto" parameterType="map">
 		update member set mphoto=#{mphoto} where num=#{num}
 	</update>
+	<update id="updateMember" parameterType="memberDto">
+		update member set mname=#{mname}, mhp=#{mhp}, maddr=#{maddr} where num=#{num}
+	</update>
 	
 </mapper> 

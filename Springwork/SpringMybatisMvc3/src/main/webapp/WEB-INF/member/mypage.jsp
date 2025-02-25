@@ -36,8 +36,56 @@
 </head>
 <body>
 <jsp:include page="../../layout/title.jsp"/>
+
+<!-- The Modal -->
+<div class="modal" id="myUpdateModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">회원정보 수정</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      	<h6>회원명 수정</h6>
+       	<input type="text" class="form-control" id="mname" value="${dto.mname }">
+       	<h6>회원 핸드폰 수정</h6>
+       	<input type="text" class="form-control" id="mhp" value="${dto.mhp }">
+       	<h6>회원 주소 수정</h6>
+       	<input type="text" class="form-control" id="maddr" value="${dto.maddr }" >
+       	<br>
+       	<button type="button" class="btn btn-sm btn-success" id="btnupdate" data-bs-dismiss="modal">수정</button>
+       	
+       	<script type="text/javascript">
+       		$("#btnupdate").click(function(){
+       			$.ajax({
+       				type:"post",
+       				dataType:"text",
+       				data:{"mname":$("#mname").val(),"mhp":$("#mhp").val(),"maddr":$("#maddr").val(),"num":${dto.num}},
+       				url:"./update",
+       				success:function(){
+       					location.reload()
+       				}
+       			})
+       		});
+       	</script>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <div style="margin:30px 100px;">
-	<img src="../save/${dto.mphoto}" class="profilelargephoto">
+	<!-- 네이버 storage 에 있는 사진으로 출력 -->
+	<img src="${naverurl }/member/${dto.mphoto}" class="profilelargephoto" onerror="this.src='${root}/noimage.png'">
 	
 	<input type="file" id="fileupload" style="display:none;">
 	
@@ -95,7 +143,7 @@
 			
 		</script>
 		<!-- 문제 : 아이디를 제외한 너무지 정보 (mname,mhp, maddr) 수정 (modal) 수정 후 reload 할거니까 @responseBody로 메서드 구현  -->
-		<button type="button" class="btn btn-sm btn-success">회원 정보 수정</button>
+		<button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#myUpdateModal">회원 정보 수정</button>
 	</div>
 </div>
 </body>

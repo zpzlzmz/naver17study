@@ -33,4 +33,8 @@ public class ShopRepleService {
 	public int getLikes(int idx) {
 		return repleMapper.getLikes(idx);
 	}
+	public String getPhoto(int idx)
+	{
+		return repleMapper.getPhoto(idx);
+	}
 }

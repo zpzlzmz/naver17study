@@ -123,7 +123,8 @@
 		<br>
 		<span style="margin-left:200px; font-size:15px;">
 			<c:if test="${sessionScope.loginstatus!=null}">
-				<img src="${root}/save/${sessionScope.loginphoto}" class="profilephoto" onerror="this.src='${root}/noimage.png'">
+				<c:set var="naverurl" value="https://kr.object.ncloudstorage.com/bitcamp.bucket"/>
+				<img src="${naverurl}/member/${sessionScope.loginphoto}" class="profilephoto" onerror="this.src='${root}/noimage.png'">
 				<script type="text/javascript">
 					$(".profilephoto").click(function(){
 						location.href='${root}/member/mypage';
@@ -137,6 +138,9 @@
 	<ul class="menu">
 		<li>
 			<a href="${root}/">HOME</a>
+		</li>
+		<li>
+			<a href="${root}/naver/papago">Papago</a>
 		</li>
 		<li>
 			<a href="${root}/shop/list">상품목록</a>
