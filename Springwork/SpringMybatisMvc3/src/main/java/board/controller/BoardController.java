@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import data.dto.BoardDto;
@@ -110,6 +111,88 @@ public class BoardController {
 		
 		
 		return "board/boarddetail";
+	}
+	
+	@GetMapping("/updateform")
+	public String updateForm(
+			@RequestParam int idx, @RequestParam int pageNum,
+			Model model
+			)
+	{
+		BoardDto dto=boardService.getSelectByIdx(idx);
+		model.addAttribute("dto", dto);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("naverurl", "https://kr.object.ncloudstorage.com/"+bucketName);
+
+		return "board/updateform";
+	}	
+
+	//수정폼에서 기존 사진 목록 나타냄
+	@GetMapping("/photolist")
+	@ResponseBody
+	public List<BoardFileDto> photoList(@RequestParam int idx)
+	{
+		List<BoardFileDto> list=fileService.getFiles(idx);
+		return list;
+	}
+
+	//수정폼에서 각각의 사진 삭제시
+	@GetMapping("/photodel")
+	@ResponseBody
+	public void deletePhoto(@RequestParam int num)
+	{
+		//스토리지에 있는 파일명 얻기
+		String filename=fileService.getFilename(num);
+
+		//스토리지에서 사진 삭제
+		stroageService.deleteFile(bucketName, "board", filename);
+
+		//사진 삭제
+		fileService.deleteFile(num);
+	}
+
+	//사진추가및 글수정
+	@PostMapping("/update")
+	public String update(
+			@ModelAttribute BoardDto dto,
+			@RequestParam int pageNum,
+			@RequestParam("upload") List<MultipartFile> upload
+			)
+	{
+		//제목및 내용 수정
+		boardService.updateBoard(dto);
+		//사진은 추가
+		//파일이 있는경우에만 해당,네이버 스토리지에 저장후 파일저장(이때 필요한게 idx,filename)
+		//반복문 안에서 이루어져야만 한다
+		if(!upload.get(0).getOriginalFilename().equals(""))
+		{
+			for(MultipartFile f:upload)
+			{
+				String filename=stroageService.uploadFile(bucketName, "board", f);
+				BoardFileDto bdto=new BoardFileDto();
+				bdto.setIdx(dto.getIdx());
+				bdto.setFilename(filename);
+				//boardfile 에 insert
+				fileService.insertBoardFile(bdto);
+			}
+		}
+
+		return "redirect:./detail?idx="+dto.getIdx()+"&pageNum="+pageNum;				
+	}
+	
+	@GetMapping("/delete")
+	@ResponseBody
+	public void boardDelete(@RequestParam int idx)
+	{
+		//idx 에 해당하는 파일들 삭제
+		List<BoardFileDto> filelist=fileService.getFiles(idx);
+		for(BoardFileDto fdto:filelist)
+		{
+			String filename=fdto.getFilename();
+			stroageService.deleteFile(bucketName, "board", filename);
+		}
+		
+		boardService.deleteBoard(idx);//원글을 지우면 그 글에 업로드된 파일들 db정보는 자동으로 지워짐
 	}
 	
 }

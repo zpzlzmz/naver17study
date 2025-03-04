@@ -27,5 +27,9 @@ public class BoardFileService {
 	public void deleteFile(int num) {
 		fileMapper.deleteFile(num);
 	}
+	public String getFilename(int num)
+	{
+		return fileMapper.getFilename(num);
+	}
 	
 }

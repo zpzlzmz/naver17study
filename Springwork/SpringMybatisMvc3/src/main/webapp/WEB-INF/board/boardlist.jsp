@@ -77,7 +77,10 @@
 								<!-- 이미지가 한개이상 있는경우 이미지 아이콘 넣기 1개 일경우 2개일경우 나누기-->
 								<c:if test="${dto.photoCount==1 }"><i class="bi bi-image picon"></i></c:if>
 								<c:if test="${dto.photoCount>1 }"><i class="bi bi-images picon"></i></c:if>
-								
+								&nbsp;
+								<c:if test="${dto.repleCount>0}">
+									<span style="color:red;">[${dto.repleCount}]</span>
+								</c:if>
 							</a>
 						</td>
 						<td align="center">${dto.writer}</td>
@@ -119,15 +122,7 @@
 			</c:if>
 		</ul>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 </div>
 </body>
