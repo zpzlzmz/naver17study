@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mybitdep
+spec:
+  selector:
+    matchLabels:
+      app: bitcamp
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: bitcamp
+    spec:
+      containers:
+        - name: myproject
+          image: unholypotato/study-docker:2.0
+          ports:
+            - containerPort: 8090
+
